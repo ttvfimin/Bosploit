@@ -25,6 +25,14 @@ namespace Bosploit
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+        public static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
+        private const UInt32 SWP_NOSIZE = 0x0001;
+        private const UInt32 SWP_NOMOVE = 0x0002;
+        private const UInt32 TOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE;
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -44,7 +52,12 @@ namespace Bosploit
         private void button3_Click(object sender, EventArgs e)
         {
             api.LaunchExploit();
-            logLabel.Text += "\n(Attempted to) Injected WRD API";
+            logLabel.Text += "\nInject WRD API";
+            if(api.isAPIAttached())
+            {
+                button3.Visible = false;
+                label3.Text = "Is injected: true";
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -85,7 +98,7 @@ namespace Bosploit
                 }
             }
 
-            logLabel.Text += "\n(Attempted to) Opened file.";
+            logLabel.Text += "\nOpen file.";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -117,6 +130,134 @@ namespace Bosploit
         private void button8_Click(object sender, EventArgs e)
         {
             logLabel.Text = "Log";
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
+            button9.Visible = false;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string exploit = fastColoredTextBox1.Text;
+            api.SendLuaCScript(exploit);
+        }
+
+        private void killBtn_Click(object sender, EventArgs e)
+        {
+            string command = "kill me";
+            api.SendCommand(command);
+        }
+
+        private void floatBtn_Click(object sender, EventArgs e)
+        {
+            string command = "float me";
+            api.SendCommand(command);
+        }
+
+        private void nofloatBtn_Click(object sender, EventArgs e)
+        {
+            string command = "nofloat me";
+            api.SendCommand(command);
+        }
+
+        private void hiphieghtBtn_Click(object sender, EventArgs e)
+        {
+            string command = "hipheight me 100";
+            api.SendCommand(command);
+        }
+
+        private void espBtn_Click(object sender, EventArgs e)
+        {
+            string command = "boxesp";
+            api.SendCommand(command);
+        }
+
+        private void ffBtn_Click(object sender, EventArgs e)
+        {
+            string command = "ff me";
+            api.SendCommand(command);
+        }
+
+        private void noffBtn_Click(object sender, EventArgs e)
+        {
+            string command = "noff me";
+            api.SendCommand(command);
+        }
+
+        private void blockheadBtn_Click(object sender, EventArgs e)
+        {
+            string user = richTextBox1.Text;
+            if (user == "") { user = "me"; }
+            string command = "blockhead " + user;
+            api.SendCommand(command);
+        }
+
+        private void nolimbsBtn_Click(object sender, EventArgs e)
+        {
+            string user = richTextBox1.Text;
+            if (user == "") { user = "me"; }
+            string command = "nolimbs " + user;
+            api.SendCommand(command);
+        }
+
+        private void noarmsBtn_Click(object sender, EventArgs e)
+        {
+            string user = richTextBox1.Text;
+            if (user == "") { user = "me"; }
+            string command = "noarms " + user;
+            api.SendCommand(command);
+        }
+
+        private void nolegsBtn_Click(object sender, EventArgs e)
+        {
+            string user = richTextBox1.Text;
+            if (user == "") { user = "me"; }
+            string command = "nolegs " + user;
+            api.SendCommand(command);
+        }
+
+        private void fireBtn_Click(object sender, EventArgs e)
+        {
+            string command = "fire me";
+            api.SendCommand(command);
+        }
+
+        private void nofireBtn_Click(object sender, EventArgs e)
+        {
+            string command = "nofire me";
+            api.SendCommand(command);
+        }
+
+        private void sparklesBtn_Click(object sender, EventArgs e)
+        {
+            string command = "sparkles me";
+            api.SendCommand(command);
+        }
+
+        private void nosparklesBtn_Click(object sender, EventArgs e)
+        {
+            string command = "nosparkles me";
+            api.SendCommand(command);
+        }
+
+        private void btoolsBtn_Click(object sender, EventArgs e)
+        {
+            string command = "btools me";
+            api.SendCommand(command);
+        }
+
+        private void smokeBtn_Click(object sender, EventArgs e)
+        {
+            string command = "smoke me";
+            api.SendCommand(command);
+        }
+
+        private void nosmokeBtn_Click(object sender, EventArgs e)
+        {
+            string command = "nosmoke me";
+            api.SendCommand(command);
         }
     }
 }
