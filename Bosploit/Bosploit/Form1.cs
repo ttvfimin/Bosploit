@@ -119,8 +119,7 @@ namespace Bosploit
 
         private void button9_Click(object sender, EventArgs e)
         {
-            SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
-            button9.Visible = false;
+            this.TopMost = !this.TopMost;
         }
 
         private void button10_Click(object sender, EventArgs e)
