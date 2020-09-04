@@ -52,11 +52,15 @@ namespace Bosploit
         private void button3_Click(object sender, EventArgs e)
         {
             api.LaunchExploit();
-            logLabel.Text += "\nInject WRD API";
+            string injectStatus = "false";
             if(api.isAPIAttached())
             {
                 button3.Visible = false;
-                label3.Text = "Is injected: true";
+                if(api.isAPIAttached())
+                {
+                    injectStatus = "true";
+                }
+                label3.Text = "Is injected: "+ injectStatus;
             }
         }
 
@@ -64,14 +68,12 @@ namespace Bosploit
         {
             string script = fastColoredTextBox1.Text;
             api.SendLimitedLuaScript(script);
-            logLabel.Text += "\nSent Limited Lua Script";
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             string script = fastColoredTextBox1.Text;
             api.SendLuaScript(script);
-            logLabel.Text += "\nSent Lua Script";
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -96,26 +98,14 @@ namespace Bosploit
                     fastColoredTextBox1.Text += "--" + error;
                     fastColoredTextBox1.Text = "-- Please contact the developer with the above error via github!\n-- Github: ttvfimin";
                 }
-            }
-
-            logLabel.Text += "\nOpen file.";
+            } 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            logLabel.Text += "\nStarted Bosploit";
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            if(logLabel.Visible == false)
-            {
-                logLabel.Visible = true;
-            }
-            else
-            {
-                logLabel.Visible = false;
-            }
+            listBox1.Items.Clear();//Clear Items in the LuaScriptList
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.txt");
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.lua");
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -125,11 +115,6 @@ namespace Bosploit
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            logLabel.Text = "Log";
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -258,6 +243,18 @@ namespace Bosploit
         {
             string command = "nosmoke me";
             api.SendCommand(command);
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fastColoredTextBox1.Text = File.ReadAllText($"./Scripts/{listBox1.SelectedItem}");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();//Clear Items in the LuaScriptList
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.txt");
+            Functions.PopulateListBox(listBox1, "./Scripts", "*.lua");
         }
     }
 }

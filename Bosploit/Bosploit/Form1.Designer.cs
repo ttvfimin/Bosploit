@@ -39,14 +39,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.logLabel = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.killBtn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.ffBtn = new System.Windows.Forms.Button();
@@ -70,9 +66,10 @@
             this.nosmokeBtn = new System.Windows.Forms.Button();
             this.nofireBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -117,6 +114,7 @@
             this.fastColoredTextBox1.CommentPrefix = "--";
             this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fastColoredTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fastColoredTextBox1.IsReplaceMode = false;
             this.fastColoredTextBox1.Language = FastColoredTextBoxNS.Language.Lua;
             this.fastColoredTextBox1.LeftBracket = '(';
@@ -201,39 +199,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // logLabel
-            // 
-            this.logLabel.AutoSize = true;
-            this.logLabel.BackColor = System.Drawing.Color.White;
-            this.logLabel.Location = new System.Drawing.Point(924, 38);
-            this.logLabel.Name = "logLabel";
-            this.logLabel.Size = new System.Drawing.Size(25, 13);
-            this.logLabel.TabIndex = 9;
-            this.logLabel.Text = "Log";
-            this.logLabel.Visible = false;
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(927, 661);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(135, 31);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "Toggle Log";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(927, 698);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(135, 31);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Clear Log";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.Lime;
@@ -270,19 +235,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(25)))), ((int)(((byte)(10)))));
-            this.panel2.Controls.Add(this.panel3);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(10, 808);
             this.panel2.TabIndex = 15;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(25)))), ((int)(((byte)(10)))));
-            this.panel3.Location = new System.Drawing.Point(-647, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(769, 808);
-            this.panel3.TabIndex = 16;
             // 
             // killBtn
             // 
@@ -362,7 +318,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(406, 20);
+            this.label3.Location = new System.Drawing.Point(658, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(167, 25);
             this.label3.TabIndex = 23;
@@ -528,12 +484,36 @@
             this.label5.TabIndex = 38;
             this.label5.Text = "S MEANS SELF";
             // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.ForeColor = System.Drawing.Color.Black;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(927, 29);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(135, 663);
+            this.listBox1.TabIndex = 39;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(925, 698);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(137, 39);
+            this.button7.TabIndex = 40;
+            this.button7.Text = "Refresh";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(25)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1074, 741);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.sparklesBtn);
             this.Controls.Add(this.nosparklesBtn);
@@ -560,9 +540,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.logLabel);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -579,7 +556,6 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -596,14 +572,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label logLabel;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button killBtn;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button ffBtn;
@@ -627,6 +599,8 @@
         private System.Windows.Forms.Button nosmokeBtn;
         private System.Windows.Forms.Button nofireBtn;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button7;
     }
 }
 
